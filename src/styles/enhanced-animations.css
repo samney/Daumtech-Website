@@ -1,0 +1,475 @@
+/* ========== ENHANCED ANIMATIONS ========== */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced base animations */
+.animate-section {
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+}
+
+.animate-section.show {
+  opacity: 1;
+}
+
+/* Prevent animation conflicts with fixed headers and navigation */
+.animate-section:has(nav),
+.animate-section:has(header),
+nav.animate-section,
+header.animate-section {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Allow navigation to have its own positioning */
+nav,
+[class*="MainNav"],
+[class*="Hero"] nav,
+.container-wrapper nav {
+  opacity: 1 !important;
+  /* Do not override transform or position for nav - let it handle its own fixed positioning */
+}
+
+/* Ensure fixed positioning works for non-navigation elements */
+.fixed:not(nav):not([class*="MainNav"]):not(.container-wrapper nav),
+div.fixed:not([class*="nav"]) {
+  opacity: 1 !important;
+  transform: none !important;
+  position: fixed !important;
+}
+
+/* Specific override for navigation to allow dynamic positioning */
+nav.fixed,
+div:has(nav).fixed {
+  /* Let navigation handle its own positioning logic */
+}
+
+/* Modal positioning fixes */
+[id*="modal"],
+[class*="modal"],
+.z-\[10000\],
+.z-\[9998\] {
+  position: fixed !important;
+  opacity: 1 !important;
+  transform: none !important;
+  z-index: 10000 !important;
+}
+
+/* Backdrop blur elements need special handling */
+.backdrop-blur-xs,
+.backdrop-blur-sm,
+.backdrop-blur-md {
+  position: fixed !important;
+  opacity: 1 !important;
+  z-index: 10000 !important;
+  /* Do not override transform for backdrop-blur - it needs it for the blur effect */
+}
+
+/* Ensure modal content is properly positioned */
+.fixed.inset-0 {
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  position: fixed !important;
+}
+
+/* Modal animation overrides */
+.animate-section [id*="modal"],
+.animate-section [class*="modal"],
+#popup-modal,
+[id="popup-modal"] {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 10000 !important;
+}
+
+/* Ensure modal containers are properly positioned */
+.animate-section div[class*="fixed"],
+div[class*="fixed"][class*="inset-0"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 10000 !important;
+}
+
+/* Special handling for backdrop-blur containers */
+div[class*="backdrop-blur"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 10000 !important;
+  /* Allow backdrop-filter to work */
+}
+
+/* Reset transforms on all modal-related elements */
+body.modal-open,
+body:has([id*="modal"]) {
+  overflow: hidden;
+}
+
+/* Prevent animations from interfering with modals */
+[class*="animate"]:has([id*="modal"]) {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Specific fixes for header animations */
+.animate-section h1,
+.animate-section h2,
+.animate-section h3,
+.animate-section h4,
+.animate-section h5,
+.animate-section h6 {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.animate-section.show h1,
+.animate-section.show h2,
+.animate-section.show h3,
+.animate-section.show h4,
+.animate-section.show h5,
+.animate-section.show h6 {
+  opacity: 1;
+  transform: none;
+}
+
+/* ========== ENTRANCE ANIMATIONS ========== */
+
+/* Fade in with elegant bounce */
+.animate-section.fade-bounce {
+  transform: translateY(60px) scale(0.8);
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-section.fade-bounce.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  transition-duration: 1.2s;
+}
+
+/* Slide up with smooth easing */
+.animate-section.slide-up {
+  transform: translateY(80px);
+  opacity: 0;
+}
+
+.animate-section.slide-up.show {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Slide down effect */
+.animate-section.slide-down {
+  transform: translateY(-80px);
+  opacity: 0;
+}
+
+.animate-section.slide-down.show {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Zoom in with rotation */
+.animate-section.zoom-rotate {
+  transform: scale(0.3) rotate(-10deg);
+  opacity: 0;
+}
+
+.animate-section.zoom-rotate.show {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Flip in animation */
+.animate-section.flip-in {
+  transform: perspective(400px) rotateX(90deg);
+  opacity: 0;
+}
+
+.animate-section.flip-in.show {
+  transform: perspective(400px) rotateX(0deg);
+  opacity: 1;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Elastic bounce */
+.animate-section.elastic {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.animate-section.elastic.show {
+  transform: scale(1);
+  opacity: 1;
+  animation: elasticIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes elasticIn {
+  0% { transform: scale(0); opacity: 0; }
+  25% { transform: scale(1.2); opacity: 0.8; }
+  50% { transform: scale(0.9); opacity: 1; }
+  75% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ========== STAGGER ANIMATIONS ========== */
+
+/* Enhanced stagger with different effects */
+.animate-stagger-wave > * {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-stagger-wave.show > * {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.animate-stagger-wave > *:nth-child(1) { transition-delay: 0s; }
+.animate-stagger-wave > *:nth-child(2) { transition-delay: 0.1s; }
+.animate-stagger-wave > *:nth-child(3) { transition-delay: 0.2s; }
+.animate-stagger-wave > *:nth-child(4) { transition-delay: 0.3s; }
+.animate-stagger-wave > *:nth-child(5) { transition-delay: 0.4s; }
+.animate-stagger-wave > *:nth-child(6) { transition-delay: 0.5s; }
+
+/* Stagger from center */
+.animate-stagger-center > * {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-stagger-center.show > * {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.animate-stagger-center > *:nth-child(odd) { transition-delay: 0.1s; }
+.animate-stagger-center > *:nth-child(even) { transition-delay: 0.2s; }
+
+/* ========== CARD ANIMATIONS ========== */
+
+.card-hover-lift {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.card-float {
+  animation: cardFloat 4s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ========== BUTTON ANIMATIONS ========== */
+
+.button-magnetic {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-magnetic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.5s;
+}
+
+.button-magnetic:hover::before {
+  left: 100%;
+}
+
+.button-magnetic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ========== TEXT ANIMATIONS ========== */
+
+.text-gradient-animate {
+  background: linear-gradient(-45deg, #ee7724, #d8363a, #dd3675, #b44593);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+/* ========== MICRO INTERACTIONS ========== */
+
+.pulse-on-hover {
+  transition: all 0.3s ease;
+}
+
+.pulse-on-hover:hover {
+  animation: gentlePulse 1s infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.shake-on-error {
+  animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* ========== LOADING ANIMATIONS ========== */
+
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: loadingDots 1.4s ease-in-out infinite both;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes loadingDots {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ========== SCROLL ANIMATIONS ========== */
+
+.parallax-slow {
+  transform: translateY(var(--scroll-y, 0));
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-fast {
+  transform: translateY(calc(var(--scroll-y, 0) * 0.5));
+  transition: transform 0.1s ease-out;
+}
+
+/* ========== SPECIAL EFFECTS ========== */
+
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: glowRotate 4s linear infinite;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
+}
+
+@keyframes glowRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.morphing-blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morphBlob 8s ease-in-out infinite;
+}
+
+@keyframes morphBlob {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 40% 30% 60% / 30% 70% 60% 40%; }
+  75% { border-radius: 40% 70% 60% 30% / 70% 50% 40% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+.animate-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-section,
+  .animate-stagger-wave > *,
+  .animate-stagger-center > * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

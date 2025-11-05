@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import animation styles */
+@import './styles/animations.css';
+@import './styles/enhanced-animations.css';
+@import './styles/modal-fixes.css';
+@import './styles/navigation-fixes.css';
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+.highlight-section {
+  animation: highlight 2s ease-out;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: rgba(238, 84, 45, 0.1);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+section[id] {
+  padding-top: 2rem;
+  margin-top: -2rem;
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  a,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

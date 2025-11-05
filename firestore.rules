@@ -1,0 +1,39 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public access (no authentication required) to the formSubmissions collection
+    match /formSubmissions/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the careerSubmissions collection
+    match /careerSubmissions/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the contactForms collection
+    match /contactForms/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the otherForms collection
+    match /otherForms/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the abonnezSubmissions collection
+    match /abonnezSubmissions/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the demoForms collection
+    match /demoForms/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+
+    // Public access (no authentication required) to the devisForms collection
+    match /devisForms/{document=**} {
+      allow write: if true;  // Public access, anyone can write
+    }
+  }
+}
